@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    
+    <title>360 Virtual Tour</title>
+    <meta name="description" content="360 Virtual Tour">
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
+
+
+	<!-- <script src="https://unpkg.com/aframe-teleport-controls@0.2.x/dist/aframe-teleport-controls.min.js"></script> -->
+    <script src="https://unpkg.com/aframe-controller-cursor-component@0.2.x/dist/aframe-controller-cursor-component.min.js"></script>
+    <!-- <script src="https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/random-color.js"></script>
+    <script src="https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/snap.js"></script>
+    <script src="https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/intersection-spawn.js"></script> -->
+
+    
+    <script type="module" crossorigin src="/assets/index-56c2aaa2.js"></script>
+  </head>
+  <body>
+      <a-scene background="color: #ECECEC">
+        <a-assets>
+            <img id="point1" crossorigin = "anonymous" src="office.jpg" />
+
+            <img id="_img" src="num1t.png" />
+            <audio id="song" src="//cdn.rawgit.com/michaelnebeling/src/master/button-1.mp3" preload="auto"></audio>
+        </a-assets>
+
+        <a-entity id="spots">
+			<a-image id="spot1" scale="1 1 1" spot="name:maingate" position="0 0 -7" src="arrowFin.png"></a-image>
+        </a-entity>
+
+
+        <!--Panel entity for displaying information about current location-->
+        <a-entity id="info" lookatcam visible="false" position="2 7 -10">
+            <a-plane id="bgplane" color="black" scale="12 8 8" position="4.5 -1.5 -1"></a-plane>
+            <a-text id="about" position="0 1 0" color="white" transparent = "true" value="About: This is a description.\n of this place." scale="3 3 3"></a-text>
+            <a-text id="head" color="white" value="Head: Mr. XYZ" position="0 -1 0" scale="3 3 3"></a-text>
+            <a-text value="Hover for Image: " color="white" position="0 -2 0" scale="3 3 3"></a-text>
+            <a-circle event-set__mouseenter="_target:#pic;visible:true" color="blue" event-set__mouseleave="_target:#pic;visible:false" position="6 -2 0" scale="0.4 0.4 0.4"></a-circle>
+            <a-image id="pic" src="#_img" position="8 -2 0" scale="3 3 3" visible="false"></a-image>
+            <a-text value="Hover for Audio: " color="white" position="0 -3 0" scale="3 3 3"></a-text>
+            <a-circle id="audioLink" audioplayer sound="src:#song" color="blue" position="6 -3 0" scale="0.4 0.4 0.4"> </a-circle>
+            <a-text value="Website: " color="white" position="0 -4 0" scale="3 3 3"></a-text>
+            <a-link id="websiteLink" position="6 -4 0" href="http://localhost:3500/images" title=" " target="_blank" scale="0.5 0.5 0.5"></a-link>
+        </a-entity>
+
+
+        <a-entity id="panelsE">
+			<!--Box that opens info display on click-->
+			<a-entity id="panel" lookatcam visible="false" openbox position="4 0 -10">
+				<a-plane material="shader:flat;color:black;opacity:0.7" scale="2.5 1 1"></a-plane>
+				<a-text value="Description" color="white" scale="2 2 2" position="-1.2 0 0"></a-text>
+			</a-entity>
+		</a-entity>
+
+        <a-entity id="transports">
+			<a-entity id="leftspot" lookatcam visible="false" position="-10 2 0">
+				<a-plane material="shader:flat;color:black;opacity:0.7" scale="2.5 1 1"></a-plane>
+				<a-text value="Left Spot" color="white" scale="2 2 2" position="-1.2 0 0"></a-text>
+			</a-entity>
+
+			<a-entity id="rightspot" lookatcam visible="false" position="10 2 0">
+				<a-plane material="shader:flat;color:black;opacity:0.7" scale="2.5 1 1"></a-plane>
+				<a-text value="Right Spot" color="white" scale="2 2 2" position="-1.2 0 0"></a-text>
+			</a-entity>
+			<a-entity id="frontspot" lookatcam visible="false" position="0 2 -10">
+				<a-plane material="shader:flat;color:black;opacity:0.7" scale="2.5 1 1"></a-plane>
+				<a-text value="Front Spot" color="white"  font = "" scale="2 2 2" position="-1.2 0 0"></a-text>
+			</a-entity>
+			<a-entity id="backspot" lookatcam visible="false" position="0 2 10">
+				<a-plane material="shader:flat;color:black;opacity:0.7" scale="2.5 1 1"></a-plane>
+				<a-text value="Back Spot" color="white" scale="2 2 2" position="-1.2 0 0"></a-text>
+			</a-entity>
+        </a-entity>
+
+        <a-sky id="skybox" src="#point1"></a-sky>
+
+        <a-entity id="cam" camera position="0 1.6 0" look-controls wasd-controls>
+            <a-entity cursor="fuse:true;fuseTimeout:500"
+                      geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02"
+                      position="0 0 -1.8"
+                      material="shader:flat;color:green"
+                      animation__mouseenter="property:scale;to:3 3 3;startEvents:mouseenter;endEvents:mouseleave;dir:reverse;dur:500;loop:1">
+            </a-entity>
+        </a-entity>
+
+    </a-scene>
+
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!-- the current 360 degree gallery -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>360 Virtual Tour</title>
+    <meta name="description" content="360 Virtual Tour">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
+
+    <!-- <script src="https://unpkg.com/aframe-teleport-controls@0.2.x/dist/aframe-teleport-controls.min.js"></script> -->
+    <script src="https://unpkg.com/aframe-controller-cursor-component@0.2.x/dist/aframe-controller-cursor-component.min.js"></script>
+    <!-- <script src="https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/random-color.js"></script>
+    <script src="https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/snap.js"></script>
+    <script src="https://rawgit.com/ngokevin/kframe/csstricks/scenes/aincraft/components/intersection-spawn.js"></script> -->
+
+    <script type="module" src="js/script.js"></script>
+</head>
+<body>
+    <a-scene device-orientation-permission-ui="enabled: true" background="color: #ECECEC">
+        <a-assets>
+            <img id="point1" crossorigin = "anonymous" src="entrance.jpg" />
+            <img id="arrow" crossorigin="anonymous" src="arrowFin.png" />
+            <img id="mutebutton" src="mutebutton.png" />
+
+
+            <audio id="bgm" src="BGM.mp3"></audio>
+            <audio id="song" src="https://d145vnelm5denx.cloudfront.net/360Tour_Audio_Clips/Annadurai Statue_audio.mp3" preload="auto"></audio>
+
+            <img id="_img" src="num1t.png" />
+
+        </a-assets>
+
+        <a-entity id="spots">
+			<a-image id="spot1" scale="1 1 1" spot="name:Main Gate" position="0 0 -7" src="arrowFin.png"></a-image>
+        </a-entity>
+
+        <a-sound src="#bgm" volume="1" loop="true"></a-sound>
+        <a-sound id="audio" soundreset src="#song"></a-sound>
+        <!--Panel entity for displaying information about current location-->
+        <a-entity id="info" lookatcam visible="false" scale="0 0 0" position="-20 7 -5">
+            <a-circle id="closeButton" openbox position="9.5 2 0" material="opacity:0" scale="0.75 0.75 0.75"></a-circle>
+            <a-text value="X" scale="4 4 4" position="9.3 2.1 0" color="red"></a-text>
+            <a-plane id="bgplane" color="#39523c" scale="12 8 8" position="4.5 -1.5 -1"></a-plane>
+            <a-text id="about" position="0 -3 0" font="https://cdn.aframe.io/fonts/Exo2Bold.fnt" color="white" transparent="true" wrap-count="25" width ="3" scale="3 3 3"></a-text>
+            <a-text id="head" color="white" value="Head: Mr. XYZ" font="https://cdn.aframe.io/fonts/Exo2Bold.fnt" position="3.5 -1 0" scale="3 3 3" wrap-count="20" width="2.5"></a-text>
+            <!----<a-text value="Hover for Image: " color="white" position="0 -2 0" scale="3 3 3"></a-text>
+            <a-circle event-set__mouseenter="_target:#pic;visible:true" color="blue" event-set__mouseleave="_target:#pic;visible:false" position="6 -2 0" scale="0.4 0.4 0.4"></a-circle>-->
+            <a-image id="pic" src="" visible="true" position="1 0 0" scale="4 4 4"></a-image>
+            <a-text id="toggle" value="Toggle Audio:" color="white" position="3.5 1.5 0" font="https://cdn.aframe.io/fonts/Exo2Bold.fnt" scale="3 3 3"></a-text>
+            <a-circle id="audioLink" audioplayer color="blue" position="8.5 1.5 0" scale="0.4 0.4 0.4"> </a-circle>
+            <a-text id="website" value="Website:" color="white" font="https://cdn.aframe.io/fonts/Exo2Bold.fnt" position="4.5 0.5 0" scale="3 3 3"></a-text>
+            <a-link id="websiteLink" lookatcam position="8.5 0.5 0" href="http://localhost:3500/images" title=" " target="_blank" scale="0.5 0.5 0.5"></a-link>
+        </a-entity>
+
+
+
+        <a-image id="mute" visible="false" togglebgm lookatcam position = "-18 0 -7" src="#mutebutton"></a-image>
+		<a-entity id="panelsE">
+        <!--Box that opens info display on click-->
+            <a-entity id="panel" lookatcam visible="false" openbox position="-18 0 -5">
+                <a-plane material="shader:flat;color:black;opacity:1" scale="2.5 1 1"></a-plane>
+                <a-text value="Description" color="white" scale="2 2 2" position="-1.2 0 0"></a-text>
+            </a-entity>
+        </a-entity>
+
+        <a-entity id="transports">
+        </a-entity>
+
+        <a-sky id="skybox" src="#point1"></a-sky>
+
+        <a-entity id="cameras">
+			<!-- Hover Cam
+			<a-entity id="cam" camera position="0 1.6 0" look-controls wasd-controls>
+				<a-entity cursor="fuse:true;fuseTimeout:500"
+						  geometry="primitive:ring;radiusInner:0.01;radiusOuter:0.02"
+						  position="0 0 -1.8"
+						  material="shader:flat;color:green"
+						  animation__mouseenter="property:scale;to:3 3 3;startEvents:mouseenter;endEvents:mouseleave;dir:reverse;dur:500;loop:1">
+				</a-entity>
+			</a-entity>
+			-->
+
+
+			 <!-- Direct click 1
+			 <a-camera id="cam" position="0 1.6 0" look-controls-enabled="true" wasd-controls-enabled="false">
+				<a-cursor
+					  id="cursor"
+					  material="shader:flat;color:green"
+					  animation__click="property: scale; from: 0.1 0.1 0.1; to: 2 2 2; easing: easeInCubic; dur: 150; startEvents: click"
+					  animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
+					  animation__mouseenter="property:scale;to:2 2 2;startEvents:mouseenter;dur:300;"
+					  animation__mouseleave="property:scale;from:2 2 2;to:1 1 1;startEvents:mouseleave;dur:300">
+				 </a-cursor>
+			 </a-camera>-->
+         </a-entity>
+
+    </a-scene>
+</body>
+</html>
