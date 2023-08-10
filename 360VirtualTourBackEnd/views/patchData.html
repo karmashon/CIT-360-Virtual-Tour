@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update Location</title>
+</head>
+<body>
+    <main>
+        <h1>Anna University Virtual Tour Location Data Update</h1>
+        <p>Enter data for <b>only</b> those which you want to <u>update</u></p>
+        <p>Entry of <i>building name</i> is <b>compulsory</b></p>
+        <form class="form" action="/s3/update" method="post" enctype="multipart/form-data">
+            <label for="passwd">Password:</label>
+            <input type="text" id="passwd" name="passwd" placeholder="Password" required>
+            <br />
+            <label for="bname">Building name:</label>
+            <input type="text" id="bname" name="bname" placeholder="Building Name" required>
+            <br />
+            <label for="est">Established:</label>
+            <input type="number" id="est" name="est" placeholder="1794">
+
+
+            <p>Department or Center or Landmark:</p>
+            <input type="radio" id="dept" name="dept_center_landmark" value="dept">
+            <label for="dept">Department</label>
+            <input type="radio" id="center" name="dept_center_landmark" value="center">
+            <label for="center">Center</label>
+            <input type="radio" id="landmark" name="dept_center_landmark" value="landmark">
+            <label for="landmark">Landmark</label><br /><br />
+
+
+            <p>Image Main Direction</p>
+            <input type="radio" id="N" name="NSEW" value="N">
+            <label for="N">N</label>
+            <input type="radio" id="S" name="NSEW" value="S">
+            <label for="S">S</label>
+            <input type="radio" id="E" name="NSEW" value="E">
+            <label for="E">E</label>
+            <input type="radio" id="W" name="NSEW" value="W">
+            <label for="W">W</label><br /><br />
+
+            <label for="about">About:</label><br />
+            <textarea id="about" name="about" rows="4" cols="50" placeholder="Enter data here"></textarea><br />
+
+            <label for="directorOrHead">Director/Head:</label>
+            <input type="text" id="directorOrHead" name="directorOrHead" placeholder="Enter name here" /><br />
+
+            <label for="website_link">Website link:</label>
+            <input type="text" id="website_link" name="website_link" placeholder="google.com" /><br />
+            <label for="audio_link">Audio link:</label>
+            <input type="text" id="audio_link" name="audio_link" placeholder="google.com" /><br />
+
+
+            <label for="nearCount">Count of nearby Landmarks:</label>
+            <input type="number" id="nearCount" name="nearCount" placeholder="0">
+            <br /><br />
+
+            <p><b>Example input for position:</b> Enter in the input as X Y Z positions eg: 0 0 0 for x y z position as 0 0 0 resp</p>
+
+            <label for="building1name">Building 1 Name: </label>
+            <input type="text" id="building1name" name="building1name" placeholder="Enter name" />
+            <label for="building1pos">Building 1 Position: </label>
+            <input type="text" id="building1pos" name="building1pos" placeholder="Enter position" /><br />
+
+
+            <label for="building2name">Building 2 Name: </label>
+            <input type="text" id="building2name" name="building2name" placeholder="Enter name" />
+            <label for="building2pos">Building 2 Position: </label>
+            <input type="text" id="building2pos" name="building2pos" placeholder="Enter position" /><br />
+
+
+            <label for="building3name">Building 3 Name: </label>
+            <input type="text" id="building3name" name="building3name" placeholder="Enter name" />
+            <label for="building3pos">Building 3 Position: </label>
+            <input type="text" id="building3pos" name="building3pos" placeholder="Enter position" /><br />
+
+
+            <label for="building4name">Building 4 Name: </label>
+            <input type="text" id="building4name" name="building4name" placeholder="Enter name" />
+            <label for="building4pos">Building 4 Position: </label>
+            <input type="text" id="building4pos" name="building4pos" placeholder="Enter position" /><br />
+
+
+            <label for="building5name">Building 5 Name: </label>
+            <input type="text" id="building5name" name="building5name" placeholder="Enter name" />
+            <label for="building5pos">Building 5 Position: </label>
+            <input type="text" id="building5pos" name="building5pos" placeholder="Enter position" /><br />
+
+
+            <label for="building6name">Building 6 Name: </label>
+            <input type="text" id="building6name" name="building6name" placeholder="Enter name" />
+            <label for="building6pos">Building 6 Position: </label>
+            <input type="text" id="building6pos" name="building6pos" placeholder="Enter position" /><br />
+
+            <button type="submit">submit</button>
+
+
+        </form>
+    </main>
+</body>
+</html>

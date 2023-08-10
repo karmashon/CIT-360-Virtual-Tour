@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update Location Image</title>
+  </head>
+  <body>
+    <main>
+        <h1>Anna University Virtual Tour Location Image Update / Upload Audio or Description Image</h1>
+        <form class="form" action="/s3/patchimage" method="post" enctype="multipart/form-data">
+            <label for="passwd">Password:</label>
+            <input type="text" id="passwd" name="passwd" placeholder="Password" required>
+            <br />
+            <label for="bname">Building name:</label>
+            <input type="text" id="bname" name="bname" placeholder="Building Name" required>
+            <br />
+            <label for="imageUpload">Image:</label>
+            <input type="file" id="myImage" name="myImage"><br />
+            <button type="submit">UPDATE</button>
+        </form>
+    </main>
+  </body>
+</html>

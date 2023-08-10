@@ -1,0 +1,32 @@
+{
+  "name": "360virtualtourbackend",
+  "version": "1.0.0",
+  "description": "360 Tour Project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.369.0",
+    "@aws-sdk/s3-request-presigner": "^3.369.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.3",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^2.6.12",
+    "three": "^0.154.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

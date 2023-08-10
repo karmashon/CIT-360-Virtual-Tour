@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GET Location</title>
+  </head>
+  <body>
+    <main>
+        <h1>Get List of Building Names </h1>
+        <p id = "jsonData"></p>
+    </main>
+    <script type="module">
+        const site_port = "https://cegvirtualtourbackend.onrender.com/images/";
+        //console.log(site_port)
+        async function getData(img_link_db) {
+            console.log('about to fetch image');
+            //const response = await fetch(img_link_db, { method: 'GET', withCredentials: true, crossorigin: true});
+            const response = await fetch(img_link_db);
+            const data = await response.json();
+            const json = JSON.stringify(data);
+            for(let i = 0; i < data.length; i++) {
+				let obj = data[i];
+                document.getElementById("jsonData").innerHTML += (i+1)+ ". "+ obj.name + "<br />";
+			}
+        }
+        getData(site_port);
+
+    </script>
+  </body>
+</html>

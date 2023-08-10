@@ -1,0 +1,8 @@
+NODE_ENV = production
+DATABASE_URI =
+BUCKET_NAME =
+BUCKET_REGION =
+ACCESS_KEY =
+SECRET_ACCESS_KEY =
+DB_SITE = <sitename>/images
+SITE_PASSWD = <chooseyourpassword>
